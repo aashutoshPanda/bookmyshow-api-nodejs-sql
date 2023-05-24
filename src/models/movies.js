@@ -1,19 +1,19 @@
 import { sequelize } from "../helpers/sequelize.js";
 import { DataTypes } from "sequelize";
 
-export const User = sequelize.define("User", {
+export const Movie = sequelize.define("Movie", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  username: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
   },
-  password: {
-    type: DataTypes.STRING,
+  duration: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
 });
@@ -21,8 +21,8 @@ export const User = sequelize.define("User", {
 sequelize
   .sync()
   .then(() => {
-    console.log("User table created successfully!");
+    console.log("Movie table created successfully!");
   })
   .catch((error) => {
-    console.error("User to create table : ", error);
+    console.error("Movie to create table : ", error);
   });
