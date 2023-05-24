@@ -34,3 +34,27 @@ export const getShowsByCinemaAndCity = async (cinemaId, date) => {
   });
   return shows;
 };
+
+export const getMaxSeats = async (showId) => {
+  const show = await Show.findByPk(showId, {
+    include: [
+      {
+        model: Hall,
+        attributes: ["max_seats"],
+      },
+    ],
+  });
+  const maxSeats = show.Hall.max_seats;
+  return maxSeats;
+};
+
+export const getBookedSeats = async (showId) => {
+  const result = await Booking.findAll({
+    attributes: ["seat"],
+    where: {
+      ShowId: showId,
+    },
+  });
+  const bookedSeats = result.map((booking) => booking.dataValues.seat);
+  return bookedSeats;
+};

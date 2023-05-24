@@ -1,4 +1,5 @@
-import { getShowsByCinemaAndCity } from "../services/shows.js";
+import { getShowsByCinemaAndCity, getMaxSeats, getBookedSeats } from "../services/shows.js";
+import { Booking, Show, Hall } from "../models/index.js";
 
 /**
  * @desc GET shows by city and date
@@ -23,7 +24,13 @@ export const getShowsByCinemaAndDate = async (req, res) => {
  */
 export const getSeats = async (req, res) => {
   try {
-    console.log("IMPLEMENT");
+    const showId = req.params.id;
+    const maxSeats = await getMaxSeats(showId);
+    const bookedSeats = await getBookedSeats(showId);
+    return res.status(200).send({
+      bookedSeats,
+      maxSeats,
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).send({

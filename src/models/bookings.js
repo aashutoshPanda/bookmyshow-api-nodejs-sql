@@ -1,7 +1,6 @@
 import sequelize from "../helpers/sequelize.js";
 import { DataTypes } from "sequelize";
 import Show from "./shows.js";
-import Movie from "./movies.js";
 import User from "./users.js";
 
 const Booking = sequelize.define("Booking", {
@@ -13,6 +12,9 @@ const Booking = sequelize.define("Booking", {
   seat: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    validate: {
+      min: 0,
+    },
   },
 });
 
@@ -21,9 +23,6 @@ Show.hasMany(Booking);
 
 Booking.belongsTo(User);
 User.hasMany(Booking);
-
-Show.belongsTo(Movie);
-Movie.hasMany(Show);
 
 sequelize
   .sync()

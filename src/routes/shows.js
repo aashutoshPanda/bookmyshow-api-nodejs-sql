@@ -15,7 +15,7 @@ router.get("/:cinemaId/:date", getShowsByCinemaAndDate);
  * @desc    GET available seats for a show
  * @access  Private
  */
-router.post("/:id", getSeats);
+router.get("/:id", getSeats);
 
 /**
  * @route   POST /api/shows/:id
