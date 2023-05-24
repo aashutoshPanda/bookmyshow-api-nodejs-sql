@@ -20,4 +20,4 @@ POSTMAN DOCS - [here](https://documenter.getpostman.com/view/7984450/2s93m5zgVx)
 ### Example Query for the UI below
 
 ![example-query](./readme-assets/example-query.png)
-![bookmyshow-ui](./readme-assets/bookmyshow.png)
+![bookmyshow-ui](./readme-assets/bookmyshow.jpeg)
