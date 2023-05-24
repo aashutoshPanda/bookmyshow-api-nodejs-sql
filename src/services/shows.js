@@ -1,4 +1,4 @@
-import { Show, Hall, Movie, AudioSystem, Cinema } from "../models/index.js";
+import { Show, Hall, Movie, AudioSystem, Cinema, Booking } from "../models/index.js";
 import sequelize from "../helpers/sequelize.js";
 
 export const getShowsByCinemaAndCity = async (cinemaId, date) => {
@@ -57,4 +57,13 @@ export const getBookedSeats = async (showId) => {
   });
   const bookedSeats = result.map((booking) => booking.dataValues.seat);
   return bookedSeats;
+};
+
+export const bulkBook = async (seatsToBook, showId, userId) => {
+  const bookingsData = seatsToBook.map((seat) => ({ ShowId: showId, UserId: userId, seat }));
+  const bookingsMade = await sequelize.transaction(async (transaction) => {
+    const bookingsMade = await Booking.bulkCreate(bookingsData);
+    return bookingsMade;
+  });
+  return bookingsMade;
 };

@@ -1,5 +1,4 @@
-import { getShowsByCinemaAndCity, getMaxSeats, getBookedSeats } from "../services/shows.js";
-import { Booking, Show, Hall } from "../models/index.js";
+import { getShowsByCinemaAndCity, bulkBook, getMaxSeats, getBookedSeats } from "../services/shows.js";
 
 /**
  * @desc GET shows by city and date
@@ -44,7 +43,15 @@ export const getSeats = async (req, res) => {
  */
 export const bookSeatForShow = async (req, res) => {
   try {
-    console.log("IMPLEMENT");
+    const seatsToBook = req.body.seats;
+    const showId = req.params.id;
+    const bookedSeats = await getBookedSeats(showId);
+    const seatsWhichCantBeBooked = seatsToBook.filter((value) => bookedSeats.includes(value));
+    if (seatsWhichCantBeBooked.length) {
+      return res.status(400).send({ message: "These seats are already booked", seatsWhichCantBeBooked });
+    }
+    const bookingsMade = await bulkBook(seatsToBook, showId, req.user.dataValues.id);
+    return res.status(200).send({ bookingsMade });
   } catch (err) {
     console.log(err);
     return res.status(500).send({
