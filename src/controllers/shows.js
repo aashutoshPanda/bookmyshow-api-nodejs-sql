@@ -1,9 +1,15 @@
+import { getShowsByCinemaAndCity } from "../services/shows.js";
+
 /**
  * @desc GET shows by city and date
  */
-export const getShowsByCityAndDate = async (req, res) => {
+export const getShowsByCinemaAndDate = async (req, res) => {
   try {
-    console.log("IMPLEMENT");
+    const { cinemaId, date } = req.params;
+    const shows = await getShowsByCinemaAndCity(cinemaId, date);
+    return res.status(200).send({
+      shows,
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).send({

@@ -1,5 +1,5 @@
 import express from "express";
-import { getSeats, getShowsByCityAndDate, bookSeatForShow } from "../controllers/shows.js";
+import { getSeats, getShowsByCinemaAndDate, bookSeatForShow } from "../controllers/shows.js";
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ const router = express.Router();
  * @desc    Get details of shows in a city
  * @access  Private
  */
-router.get("/:city/:date", getShowsByCityAndDate);
+router.get("/:cinemaId/:date", getShowsByCinemaAndDate);
 
 /**
  * @route   GET /api/shows/:id
