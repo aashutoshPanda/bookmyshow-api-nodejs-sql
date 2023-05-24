@@ -61,3 +61,12 @@ SELECT showtime, movie.name as movie, cinema.name as cinema, audioSystem.name as
     
         
 
+
+INSERT INTO Halls (name, max_seats, CinemaId) VALUES ('AUDI 1', 30, 1),('AUDI 2', 30, 1), ('AUDI 3', 30, 1);
+
+
+SELECT s.id, m.name as Movie, s.dimension as Dimension, s.language as Language, a.name as Audio, s.startTIme as TIME, h.name as Hall, c.name as Cinema from Shows s 
+INNER JOIN Halls h ON s.HallId=h.id 
+INNER JOIN Movies m ON s.MovieId=m.id 
+INNER JOIN Cinemas c ON c.id=h.CinemaId
+INNER JOIN AudioSystems a ON s.AudioSystemId=a.id;
