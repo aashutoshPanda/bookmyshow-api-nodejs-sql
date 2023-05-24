@@ -1,4 +1,4 @@
-export { default as User } from "./user.js";
+export { default as User } from "./users.js";
 export { default as Movie } from "./movies.js";
 export { default as Booking } from "./bookings.js";
 export { default as Hall } from "./halls.js";

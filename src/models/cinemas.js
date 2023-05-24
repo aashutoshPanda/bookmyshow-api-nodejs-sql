@@ -1,7 +1,7 @@
-import { sequelize } from "../helpers/sequelize.js";
+import sequelize from "../helpers/sequelize.js";
 import { DataTypes } from "sequelize";
 
-export const Cinema = sequelize.define("Cinema", {
+const Cinema = sequelize.define("Cinema", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -15,7 +15,6 @@ export const Cinema = sequelize.define("Cinema", {
   city: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
 });
 
@@ -27,3 +26,5 @@ sequelize
   .catch((error) => {
     console.error("Cinema to create table : ", error);
   });
+
+export default Cinema;

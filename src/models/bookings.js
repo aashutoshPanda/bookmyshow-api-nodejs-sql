@@ -1,9 +1,10 @@
-import { sequelize } from "../helpers/sequelize.js";
+import sequelize from "../helpers/sequelize.js";
 import { DataTypes } from "sequelize";
-import { Show } from "./shows.js";
-import { User } from "./users.js";
+import Show from "./shows.js";
+import Movie from "./movies.js";
+import User from "./users.js";
 
-export const Booking = sequelize.define("Booking", {
+const Booking = sequelize.define("Booking", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -32,3 +33,5 @@ sequelize
   .catch((error) => {
     console.error("Booking to create table : ", error);
   });
+
+export default Booking;

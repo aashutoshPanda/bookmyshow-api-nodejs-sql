@@ -1,7 +1,7 @@
-import { sequelize } from "../helpers/sequelize.js";
+import sequelize from "../helpers/sequelize.js";
 import { DataTypes } from "sequelize";
 
-export const AudioSystem = sequelize.define("AudioSystem", {
+const AudioSystem = sequelize.define("AudioSystem", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -22,3 +22,5 @@ sequelize
   .catch((error) => {
     console.error("AudioSystem to create table : ", error);
   });
+
+export default AudioSystem;
