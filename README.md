@@ -15,7 +15,7 @@ POSTMAN DOCS - [here](https://documenter.getpostman.com/view/7984450/2s93m5zgVx)
 - [x] JWT Auth
 - [x] Normalisation of database
 - [x] Locking the DB while bulk operation with transactions
-- [x] Indexing for better performance
+- [] Indexing for better performance
 
 ### Example Query for the UI below
 
