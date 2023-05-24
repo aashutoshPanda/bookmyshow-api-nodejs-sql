@@ -20,8 +20,11 @@
   },
   "homepage": "https://github.com/aashutoshPanda/News-Aggregator-API#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mysql2": "^3.3.2",
+    "sequelize": "^6.31.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22",
