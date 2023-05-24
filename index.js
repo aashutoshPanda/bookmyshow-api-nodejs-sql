@@ -1,9 +1,9 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config({ path: ".env.example" });
+import express from "express";
 import routes from "./src/routes/index.js";
 
 // Make all variables from our .env file available in our process
-dotenv.config({ path: ".env.example" });
 
 // Init express server
 const app = express();

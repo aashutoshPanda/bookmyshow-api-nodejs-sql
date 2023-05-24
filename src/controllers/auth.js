@@ -1,11 +1,34 @@
-import { User } from "../models.js";
-
+import { User } from "../models/index.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 /**
- * @desc POST Signup for a user
+ * @desc POST login for a user
  */
 export const login = async (req, res) => {
   try {
-    console.log("IMPLEMENT");
+    const { username, password } = req.body;
+    const user = await User.findOne({
+      where: {
+        username: username,
+      },
+    });
+    if (!user) {
+      return res.status(404).send({ message: "User Not found." });
+    }
+    const passwordIsValid = bcrypt.compareSync(password, user.password);
+    if (!passwordIsValid) {
+      return res.status(401).send({
+        message: "Invalid Password!",
+      });
+    }
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: 86400, // 24 hours
+    });
+    return res.status(200).send({
+      id: user.id,
+      username,
+      token,
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).send({
@@ -15,11 +38,15 @@ export const login = async (req, res) => {
 };
 
 /**
- * @desc POST Login for a user
+ * @desc POST register for a user
  */
-export const signup = async (req, res) => {
+export const register = async (req, res) => {
   try {
-    console.log("IMPLEMENT");
+    const salt = await bcrypt.genSalt(10);
+    const { username, password } = req.body;
+    const encryptedPassword = await bcrypt.hash(password, salt);
+    const created_user = await User.create({ username, password: encryptedPassword });
+    res.status(201).json(created_user);
   } catch (err) {
     console.log(err);
     return res.status(500).send({
