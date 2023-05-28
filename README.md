@@ -21,7 +21,7 @@ Also if we want to prioritize them then indexing the HallId in Shows table shoul
 ### Checklist
 
 - [x] JWT Auth
-- [x] Normalisation of database
+- [x] Normalization of database
 - [x] Locking the DB while bulk operation with transactions
 - [x] Indexing for better performance
 
