@@ -48,13 +48,18 @@ export const getMaxSeats = async (showId) => {
   return maxSeats;
 };
 
-export const getBookedSeats = async (showId) => {
-  const result = await Booking.findAll({
-    attributes: ["seat"],
-    where: {
-      ShowId: showId,
+export const getBookedSeats = async (showId, transaction = undefined) => {
+  const result = await Booking.findAll(
+    {
+      attributes: ["seat"],
+      where: {
+        ShowId: showId,
+      },
     },
-  });
+    {
+      transaction,
+    }
+  );
   const bookedSeats = result.map((booking) => booking.dataValues.seat);
   return bookedSeats;
 };

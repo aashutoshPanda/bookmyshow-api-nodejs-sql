@@ -47,16 +47,28 @@ export const bookSeatForShow = async (req, res) => {
   try {
     const seatsToBook = req.body.seats;
     const showId = req.params.id;
+
+    // VALIDATE seat nos.
+    const maxSeatNo = Math.max(...seatsToBook);
+    const minSeatNo = Math.min(...seatsToBook);
+
+    if (minSeatNo < 0) {
+      return res.status(400).send({ message: "Seat nos. cant be lesser than 0" });
+    }
+    const maxSeatAvailable = await getMaxSeats(showId);
+    if (maxSeatNo > maxSeatAvailable) {
+      return res.status(400).send({ message: `The hall has seats till ${maxSeatAvailable}`, maxSeatAvailable });
+    }
     await sequelize.transaction(async (transaction) => {
-      const bookedSeats = await getBookedSeats(showId);
+      const bookedSeats = await getBookedSeats(showId, transaction);
       const seatsWhichCantBeBooked = seatsToBook.filter((value) => bookedSeats.includes(value));
       if (seatsWhichCantBeBooked.length) {
-        return res.status(400).send({ message: "These seats are already booked", seatsWhichCantBeBooked });
+        return res.status(400).send({ message: "These seats are already booked", bookedSeats });
       }
 
       // DO BULK BOOKING
       const bookingsData = seatsToBook.map((seat) => ({ ShowId: showId, UserId: req.user.dataValues.id, seat }));
-      const bookingsMade = await Booking.bulkCreate(bookingsData);
+      const bookingsMade = await Booking.bulkCreate(bookingsData, { transaction });
       return res.status(200).send({ bookingsMade });
     });
   } catch (err) {
