@@ -16,7 +16,7 @@ It's important to note that adding indexes also comes with some overhead, as the
 Hence we should add them only when a bottleneck is observed.
 
 In this example indexing the foreign keys for Shows table would be good as this will speed up our joins.
-Also if we want to prioritise them then indexing the HallId in Shows table should be prioritised as it is used more frequently than the rest.
+Also if we want to prioritize them then indexing the HallId in Shows table should be prioritized as it is used more frequently than the rest.
 
 ### Checklist
 
