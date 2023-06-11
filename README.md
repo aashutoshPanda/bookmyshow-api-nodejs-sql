@@ -15,7 +15,9 @@ POSTMAN DOCS - [here](https://documenter.getpostman.com/view/7984450/2s93m5zgVx)
 - [x] JWT Auth
 - [x] Normalisation of database
 - [x] Locking the DB while bulk operation with transactions
-- [ ] Indexing for better performance
+- [x] Elastic Search for querying movies with filters and fuzzy search
+- [x] Adding comments for a movie and retrieving with Mongo (for better write performance)
+- [x] Caching of movie details endpoints with redis
 
 ### Example Query for the UI below
 
