@@ -1,0 +1,33 @@
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "term": {
+                                    "dimension.keyword": "30D"
+                                }
+                            }
+                        ],
+                        "minimum_should_match": 0
+                    }
+                }
+            ],
+            "should": [
+                {
+                    "multi_match": {
+                        "query": "Guardians",
+                        "fields": [
+                            "moviename",
+                            "hallname"
+                        ],
+                        "fuzziness": "AUTO"
+                    }
+                }
+            ],
+            "minimum_should_match": 0
+        }
+    }
+}

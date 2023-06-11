@@ -1,7 +1,14 @@
 import express from "express";
-import { getSeats, getShowsByCinemaAndDate, bookSeatForShow } from "../controllers/shows.js";
+import { getSeats, getShowsByCinemaAndDate, bookSeatForShow, searchShows } from "../controllers/shows.js";
 
 const router = express.Router();
+
+/**
+ * @route   GET /api/shows/search?dimension=3D&language=ENGLISH&term=FastX
+ * @desc    Search for shows
+ * @access  Private
+ */
+router.get("/search/filters", searchShows);
 
 /**
  * @route   GET /api/shows/:city/:date

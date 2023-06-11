@@ -1,4 +1,4 @@
-import { getShowsByCinemaAndCity, getMaxSeats, getBookedSeats } from "../services/shows.js";
+import { getShowsByCinemaAndCity, getMaxSeats, getBookedSeats, searchShowsFromElastic } from "../services/shows.js";
 import sequelize from "../helpers/sequelize.js";
 import { Booking } from "../models/index.js";
 
@@ -75,6 +75,22 @@ export const bookSeatForShow = async (req, res) => {
     console.log(err);
     return res.status(500).send({
       message: "Something went wrong while booking a seat for the show",
+    });
+  }
+};
+
+/**
+ * @desc GET search for shows with filter and query term
+ */
+export const searchShows = async (req, res) => {
+  try {
+    const { dimension, language, query = "" } = req.query;
+    const elasticSearchResults = await searchShowsFromElastic({ dimension, language, query });
+    return res.status(200).send(elasticSearchResults);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({
+      message: "Something went wrong while searching for shows",
     });
   }
 };
