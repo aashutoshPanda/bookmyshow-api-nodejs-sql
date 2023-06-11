@@ -66,13 +66,21 @@ export const getBookedSeats = async (showId, transaction = undefined) => {
   return bookedSeats;
 };
 
-export const searchShowsFromElastic = async ({ language, dimension, query }) => {
+export const searchShowsFromElastic = async ({ language, dimension, genre, query }) => {
   const shouldConditions = [];
   if (language) {
     shouldConditions.push({ term: { "language.keyword": language } });
   }
   if (dimension) {
     shouldConditions.push({ term: { "dimension.keyword": dimension } });
+  }
+
+  if (genre) {
+    shouldConditions.push({
+      wildcard: {
+        "genre.keyword": `*${genre}*`,
+      },
+    });
   }
   const requestBody = {
     query: {
@@ -106,5 +114,8 @@ export const searchShowsFromElastic = async ({ language, dimension, query }) => 
   };
 
   const response = await axios(requestConfig);
-  return response.data;
+  if (response.data.hits.total.value) {
+    return response.data.hits.hits.map((res) => res._source);
+  }
+  return [];
 };

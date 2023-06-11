@@ -84,8 +84,8 @@ export const bookSeatForShow = async (req, res) => {
  */
 export const searchShows = async (req, res) => {
   try {
-    const { dimension, language, query = "" } = req.query;
-    const elasticSearchResults = await searchShowsFromElastic({ dimension, language, query });
+    const { dimension, language, genre, query = "" } = req.query;
+    const elasticSearchResults = await searchShowsFromElastic({ dimension, language, query, genre });
     return res.status(200).send(elasticSearchResults);
   } catch (err) {
     console.log(err);
