@@ -66,16 +66,6 @@ export const getBookedSeats = async (showId, transaction = undefined) => {
   return bookedSeats;
 };
 
-const fetchData = async () => {
-  try {
-    console.log(JSON.stringify(response.data));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-fetchData();
-
 export const searchShowsFromElastic = async ({ language, dimension, query }) => {
   const shouldConditions = [];
   if (language) {
