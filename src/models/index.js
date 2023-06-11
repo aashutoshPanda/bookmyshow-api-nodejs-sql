@@ -5,3 +5,6 @@ export { default as Hall } from "./halls.js";
 export { default as Cinema } from "./cinemas.js";
 export { default as AudioSystem } from "./audioSystems.js";
 export { default as Show } from "./shows.js";
+export { default as Genre } from "./genres.js";
+export { default as Cast } from "./casts.js";
+export { default as Comment } from "./comments.js";

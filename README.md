@@ -23,7 +23,11 @@ Also if we want to prioritize them then indexing the HallId in Shows table shoul
 - [x] JWT Auth
 - [x] Normalization of database
 - [x] Locking the DB while bulk operation with transactions
-- [x] Indexing for better performance
+- [x] Elastic Search for querying movies with filters(language, genre and dimension like 3D, 4D etc..) and fuzzy search
+- [x] Adding comments for a movie and retrieving with Mongo (for better write performance)
+- [x] Caching of movie details endpoints with Redis
+
+
 
 ### Example Query for the UI below
 
