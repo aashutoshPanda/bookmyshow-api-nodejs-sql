@@ -13,11 +13,11 @@ POSTMAN DOCS - [here](https://documenter.getpostman.com/view/7984450/2s93m5zgVx)
 ### Checklist
 
 - [x] JWT Auth
-- [x] Normalisation of database
+- [x] Normalization of database
 - [x] Locking the DB while bulk operation with transactions
-- [x] Elastic Search for querying movies with filters and fuzzy search
+- [x] Elastic Search for querying movies with filters(language, genre and dimension like 3D, 4D etc..) and fuzzy search
 - [x] Adding comments for a movie and retrieving with Mongo (for better write performance)
-- [x] Caching of movie details endpoints with redis
+- [x] Caching of movie details endpoints with Redis
 
 ### Example Query for the UI below
 
