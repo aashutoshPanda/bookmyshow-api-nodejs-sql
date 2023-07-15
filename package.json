@@ -1,0 +1,43 @@
+{
+  "name": "bookmyshow-api",
+  "version": "1.0.0",
+  "description": "bookmyshow-api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "debug": "nodemon --inspect index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aashutoshPanda/bookmyshow-api-nodejs-sql.git"
+  },
+  "keywords": [],
+  "author": "Ashutosh Panda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aashutoshPanda/bookmyshow-api-nodejs-sql/issues"
+  },
+  "homepage": "https://github.com/aashutoshPanda/News-Aggregator-API#readme",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.2.3",
+    "mysql2": "^3.3.2",
+    "redis": "^4.6.7",
+    "sequelize": "^6.31.1",
+    "sequelize-cli": "^6.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8"
+  },
+  "prettier": {
+    "printWidth": 120
+  },
+  "type": "module"
+}
