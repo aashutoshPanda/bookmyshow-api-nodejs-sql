@@ -1,0 +1,28 @@
+config:
+  target: "http://127.0.0.1:8080"
+  payload:
+    - path: "../user-credentials-example.csv"
+      fields:
+        - "username"
+        - "password"
+      order: sequence
+      skipHeader: true
+  phases:
+    - duration: 60
+      arrivalRate: 10
+
+scenarios:
+  - name: "Login and Get Show Scenario"
+    flow:
+      - post:
+          url: "/api/auth/login/"
+          json:
+            username: "{{ username }}"
+            password: "{{ password }}"
+          capture:
+            - json: "$.token"
+              as: "token"
+      - get:
+          url: "/api/shows/1/2023-05-24"
+          headers:
+            Authorization: "Bearer {{ token }}"

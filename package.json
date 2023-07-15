@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/aashutoshPanda/News-Aggregator-API#readme",
   "dependencies": {
+    "artillery": "^2.0.0-35",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
@@ -33,7 +34,7 @@
     "sequelize-cli": "^6.6.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22",
+    "nodemon": "^3.0.1",
     "prettier": "^2.8.8"
   },
   "prettier": {
